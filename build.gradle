@@ -1,0 +1,43 @@
+plugins {
+    // 자바 프로젝트를 위한 기본 플러그인
+    id 'java'
+    // 라이브러리 제작에 최적화된 플러그인
+    id 'java-library'
+}
+
+group = 'com.naver'
+version = '1.0.0'
+
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_17
+//    targetCompatibility = JavaVersion.VERSION_17
+//}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter:3.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.2.0'
+//    implementation 'org.springframework.boot:spring-boot-starter'
+//    implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP 핵심
+
+    // 테스트를 위해 JUnit5를 추가합니다.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// JAR 파일 생성 시 메타 정보 설정 (선택사항)
+jar {
+    manifest {
+        attributes('Implementation-Title': 'My Tiny Library',
+                'Implementation-Version': version)
+    }
+}
