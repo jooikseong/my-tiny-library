@@ -10,6 +10,7 @@ version = '1.0.0'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -21,9 +22,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP 핵심
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
-
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'com.github.jooikseong:library-test:v1.0.0'
 }
 
 tasks.named('test') {

@@ -12,6 +12,9 @@ public class MyApiAutoConfiguration {
 
     @Bean
     public MyExternalClient myExternalClient(MyApiProperties properties) {
+        if (properties.getApiKey() == null || properties.getApiKey().isEmpty()) {
+            throw new ApiKeyNotFoundException();
+        }
         return new MyExternalClient(properties);
     }
 }
