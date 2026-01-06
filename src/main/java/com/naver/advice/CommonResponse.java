@@ -18,4 +18,8 @@ public class CommonResponse<T> {
     public static <T> CommonResponse<T> success(T data) {
         return new CommonResponse<>(200, data, "success");
     }
+
+    public static CommonResponse<Void> fail(int status, String message) {
+        return new CommonResponse<>(status, null, message);
+    }
 }

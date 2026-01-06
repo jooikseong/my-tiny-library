@@ -14,16 +14,13 @@ repositories {
 
 dependencies {
 
-//    implementation 'org.projectlombok:lombok:1.18.34'
-//    implementation 'org.springframework.boot:spring-boot-starter:3.2.0'
-//    implementation 'org.springframework.boot:spring-boot-starter-aop:3.2.0'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP 핵심
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-    // 테스트를 위해 JUnit5를 추가합니다.
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 
