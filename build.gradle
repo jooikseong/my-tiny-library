@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.github.jooikseong'
-version = 'v1.0.5'
+version = 'v1.0.6'
 //group = 'com.naver'
 //version = '1.0.0'
 
@@ -19,7 +19,6 @@ java {
 
 repositories {
     mavenCentral()
-//    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -32,18 +31,37 @@ dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    implementation 'com.github.jooikseong:my-tiny-library:v1.0.1'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
 
-bootJar {
-    enabled = false // 실행 가능한 jar 생성 안 함
+//bootJar {
+//    enabled = false // 실행 가능한 jar 생성 안 함
+//}
+//
+//jar {
+//    enabled = true  // 일반 library jar 생성
+//    archiveClassifier = ''
+//}
+
+// 중요: bootJar는 끄고 일반 jar만 활성화
+bootJar { enabled = false }
+jar {
+    enabled = true
+    archiveBaseName = 'my-tiny-library'
+    archiveVersion = 'v1.0.6'
 }
 
-jar {
-    enabled = true  // 일반 library jar 생성
-    archiveClassifier = ''
+// 핵심: 이 설정이 있어야 JitPack이 빌드 후 JAR 파일을 추출해갑니다.
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'com.github.jooikseong'
+            artifactId = 'my-tiny-library'
+            version = 'v1.0.6'
+        }
+    }
 }
